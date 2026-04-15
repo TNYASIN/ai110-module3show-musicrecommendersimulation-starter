@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-I built a simple music recommender that takes a user's taste preferences and scores songs based on how well they match. No machine learning, just math and logic. The goal was to understand how a real recommender might work at a basic level — what data it needs, how it turns that data into a ranking, and where it can go wrong.
+I built a simple music recommender that takes a user's taste preferences and scores songs based on how well they match. The goal was to understand how a real recommender might work at a basic level: what data it needs, how it turns that data into a ranking, and where it can go wrong.
 
 ---
 
@@ -10,7 +10,7 @@ I built a simple music recommender that takes a user's taste preferences and sco
 
 Real platforms like Spotify use two main approaches:
 
-**Collaborative filtering** looks at what other people with similar taste liked. It doesn't care what the song sounds like — it just finds patterns across users. Like, "everyone who listened to this also listened to that."
+**Collaborative filtering** looks at what other people with similar taste liked. It finds patterns across users without caring about the actual content of the songs.
 
 **Content-based filtering** looks at the song's actual features — genre, mood, energy, etc. — and matches them to what the user prefers. That's what I built here, because I have song attributes but no user history.
 
@@ -31,7 +31,7 @@ favorite_genre, favorite_mood, target_energy, likes_acoustic
 | Energy closeness: `(1 - gap) × 1.5` | 0 to 1.5 |
 | Acoustic bonus (if likes_acoustic and acousticness > 0.7) | +0.5 |
 
-I weighted genre the highest because in my experience that's usually the strongest filter — I'm not going to accidentally want a country song when I'm in a folk mood. Energy gets a sliding scale instead of a yes/no because it's a number, not a category.
+I weighted genre the highest because in my experience that's usually the strongest filter. Energy gets a sliding scale instead of a yes/no because its hard to quantize that. Acoustic tracks are given a bonus based on user perference.
 
 ### Data flow
 
@@ -85,12 +85,12 @@ pytest
 ### Profile 1 — My default taste (folk, melancholy, low energy)
 ![Alt text](screenshots/Profile1.png)
 
-Top results were *Come Here*, *These Days*, *Keep the Rain* — all very quiet, acoustic folk songs. That felt right. The lofi tracks came up mid-list too because their energy was close even though genre didn't match.
+Top results were *Come Here*, *These Days*, *Keep the Rain* — all very quiet, acoustic folk songs. That matched the profile. The lofi tracks came up mid-list too because their energy was close even though genre didn't match.
 
 ### Profile 2 — High energy rock (rock, intense, 0.9)
 ![Alt text](screenshots/Profile2.png)
 
-*Poison*, *9+1#*, *Storm Runner* all floated to the top. *있지* also appeared even though it's "moody" not "intense" — the energy (0.80) was close enough to pull it up. Makes sense.
+*Poison*, *9+1#*, *Storm Runner* all floated to the top. *있지* also appeared even though it's "moody" not "intense" — the energy (0.80) was close enough to pull it up. 
 
 ### Profile 3 — Chill lofi (lofi, chill, 0.35)
 ![Alt text](screenshots/Profile3.png)
