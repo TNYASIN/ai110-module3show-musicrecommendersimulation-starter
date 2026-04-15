@@ -23,10 +23,10 @@ Both profiles want quiet, low-energy music but they end up with completely diffe
 Rock/intense → high energy, electric, fast  
 Chill lofi → low energy, mellow, slow
 
-These two have nothing in common and the results show it. No shared songs anywhere in the top 5. The energy ranges don't overlap at all (rock profile targets 0.9, lofi targets 0.35). This is the pair where the system does exactly what you'd want — it keeps them completely separate. No weird cross-recommendations.
+These two have nothing in common and the results show it. No shared songs anywhere in the top 5. The energy ranges don't overlap at all (rock profile targets 0.9, lofi targets 0.35). This is the pair where the system does exactly what you'd want by keeping them completely separate. 
 
 ---
 
 ## Adversarial: conflicting preferences (rock genre, but melancholy mood, energy 0.5)
 
-The genre match (+2.0) still dominated. *Storm Runner* and *Poison* ranked near the top even though their mood is "intense," not "melancholy." The mood signal just couldn't overcome the genre bonus. So someone asking for "sad rock" would basically get served "intense rock" because the system treats genre as the top priority. That felt like a real limitation — there's no way to say "I want the rock sound but the emotional weight of a sad song."
+The genre match (+2.0) still dominated. *Storm Runner* and *Poison* ranked near the top even though their mood is "intense," not "melancholy." The mood signal just couldn't overcome the genre bonus. So someone asking for "sad rock" would basically get served "intense rock" because the system treats genre as the top priority. That felt like a real limitation since there's no way to say "I want the rock sound but the emotional weight of a sad song."
