@@ -8,20 +8,20 @@
 
 ## 2. Intended Use
 
-This is a classroom simulation, not a real product. It's meant to show how a simple content-based recommender works step by step. It recommends songs from a 19-song catalog based on a user's preferred genre, mood, and energy level. Not for real users, not for production.
+This is a classroom simulation, not a real product. It's meant to show how a simple content-based recommender works step by step. It recommends songs from a 19-song catalog based on a user's preferred genre, mood, and energy level. Not for real users or for production.
 
 ---
 
 ## 3. How the Model Works
 
-You give it a taste profile — like "I like folk, melancholy mood, low energy." It goes through every song in the catalog and gives each one a score based on how well it matches:
+You give it a taste profile consisting of genre, moood and energy,etc. It goes through every song in the catalog and gives each one a score based on how well it matches:
 
 - Songs in the same genre get 2 points
 - Songs with the same mood get 1 point
 - Songs close to your target energy get up to 1.5 points (the closer, the more)
 - If you like acoustic music and the song is very acoustic, it gets a bonus 0.5
 
-After scoring every song, it sorts them and returns the top ones. That's it. No machine learning, no history, just math.
+After scoring every song, it sorts them and returns the top ones.
 
 ---
 
@@ -40,7 +40,7 @@ After scoring every song, it sorts them and returns the top ones. That's it. No 
 
 - Really easy to understand what it's doing and why. The reason string tells you exactly which features matched.
 - Works well when the user has a strong, clear preference (like "only folk" or "only high-energy rock"). The right songs rise to the top quickly.
-- The energy similarity scoring does something smart — it doesn't just reward the highest energy, it rewards closeness. So a "target 0.3" user doesn't get served 0.9 energy songs just because they score high elsewhere.
+- The energy similarity scoring it rewards closeness. So a "target 0.3" user doesn't get served 0.9 energy songs just because they score high elsewhere.
 
 ---
 
@@ -58,7 +58,7 @@ After scoring every song, it sorts them and returns the top ones. That's it. No 
 
 I tested three profiles:
 
-- **Folk/melancholy/low energy** (my actual taste): Came Here, These Days, Keep the Rain all ranked at the top. Felt right to me — those are songs I actually love.
+- **Folk/melancholy/low energy** (my actual taste): Came Here, These Days, Keep the Rain all ranked at the top. Felt right to me since those are songs I actually love.
 - **High-energy rock**: Poison and Storm Runner rose to the top. JAURIM also appeared even though its mood label didn't match, purely on energy similarity. That was interesting.
 - **Chill lofi**: Basically auto-filled with the three lofi tracks in the catalog. Not much insight there since the catalog has so few lofi songs.
 
@@ -77,6 +77,6 @@ What surprised me: when I removed mood scoring, *Spacewalk Thoughts* (ambient/ch
 
 ## 9. Personal Reflection
 
-Before this I kind of assumed recommenders were just "smarter" than simple math — like there had to be some deep model behind it. But building this showed me that even a few simple rules with the right weights can produce results that feel pretty reasonable. The tricky part isn't the algorithm, it's deciding what to measure and how much to weight it.
+Before this I kind of assumed recommenders were just "smarter" than simple math, like there had to be some deep model behind it. But building this showed me that even a few simple rules with the right weights can produce results that feel pretty reasonable. 
 
-The thing that stuck with me most was how invisible these decisions are to the user. When Spotify serves me a song, I have no idea if it ranked high because of genre, because of tempo, or because 10 million other people with my listening history liked it. Building this from scratch made that opacity feel more real. You're trusting whoever built the system to have made good choices about what matters — and there's no way to check.
+The thing that stuck with me most was how invisible these decisions are to the user. When Spotify serves me a song, I have no idea if it ranked high because of genre, because of tempo, or because 10 million other people with my listening history liked it. Building this from scratch made that opacity feel more real.
